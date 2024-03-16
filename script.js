@@ -1,24 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     const handle = document.querySelector('.handle');
-    const img2 = document.getElementById('img2');
+    const slider = document.querySelector('.slider');
     let isDragging = false;
 
     handle.addEventListener('mousedown', (e) => {
         isDragging = true;
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            document.removeEventListener('mousemove', mouseMoveHandler);
-        });
+        e.preventDefault(); // Prevents unwanted text selection during drag on some browsers.
     });
 
-    const mouseMoveHandler = (e) => {
+    document.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
+        // Calculate new position within the container bounds.
         const rect = handle.parentElement.getBoundingClientRect();
-        const offset = Math.min(Math.max(0, e.clientX - rect.left), rect.width);
-        const percentage = (offset / rect.width) * 100;
-        handle.style.left = percentage + '%';
-        img2.style.width = percentage + '%';
-        img2.style.left = percentage + '%';
-    };
+        const newPos = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+        // Adjust the slider (mask) width based on handle movement.
+        slider.style.width = `${newPos}px`;
+        // Update handle position.
+        handle.style.left = `${newPos}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
 });
