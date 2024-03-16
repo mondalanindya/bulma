@@ -1,0 +1,53 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+}
+
+.image-compare-container {
+    position: relative;
+    width: 500px; /* Set to match image width */
+    height: 333px; /* Set to match image height */
+    overflow: hidden;
+}
+
+.image-compare-container img.full-width {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slider img {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%; /* Double the container width to fit when slid */
+    height: 100%;
+    object-fit: cover;
+}
+
+.handle {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #ffffff;
+    cursor: ew-resize;
+    z-index: 2;
+}
