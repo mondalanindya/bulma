@@ -9,24 +9,19 @@ body, html {
 
 .image-compare-container {
     position: relative;
-    width: 500px; /* Your images' width */
-    height: 300px; /* Your images' height */
+    width: 500px; /* Match your images' size */
+    height: 300px; /* Match your images' size */
     overflow: hidden;
 }
 
-.image-compare-container img {
+.image-compare-container img, .slider {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
 
 .slider {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0; /* Initially, the slider does not cover any part of the image */
-    height: 100%;
+    width: 50%; /* Initial clip */
     overflow: hidden;
 }
 
@@ -34,17 +29,14 @@ body, html {
     position: absolute;
     width: 100%;
     height: 100%;
-    left: 0;
 }
 
 .handle {
     position: absolute;
-    left: 50%;
     top: 0;
     bottom: 0;
-    width: 2px; /* The width of the line */
-    background: #ffffff;
+    width: 2px;
+    background: #ffffff; /* Line color */
     cursor: ew-resize;
-    z-index: 3; /* Ensure it's above both images */
+    left: 50%; /* Initial position */
 }
-
