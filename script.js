@@ -1,31 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     const handle = document.querySelector('.handle');
     const slider = document.querySelector('.slider');
-    let isPressedDown = false;
-    let startX;
+    let isDragging = false;
 
-    const mouseDownHandler = function(e) {
-        isPressedDown = true;
-        startX = e.clientX;
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', mouseUpHandler);
-    };
+    handle.addEventListener('mousedown', (e) => {
+        isDragging = true;
+    });
 
-    const mouseMoveHandler = function(e) {
-        if (!isPressedDown) return;
-        const dx = e.clientX - startX;
-        const newLeft = Math.min(Math.max(0, handle.offsetLeft + dx), slider.parentElement.offsetWidth);
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        // Calculate slider position relative to the image container
+        const rect = slider.getBoundingClientRect();
+        let newLeft = e.clientX - rect.left;
 
+        // Clamp the new position to the container bounds
+        newLeft = Math.max(0, Math.min(newLeft, slider.parentElement.offsetWidth));
+
+        // Set new positions
         slider.style.width = `${newLeft}px`;
         handle.style.left = `${newLeft}px`;
-        startX = e.clientX;
-    };
+    });
 
-    const mouseUpHandler = function() {
-        isPressedDown = false;
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
-    };
-
-    handle.addEventListener('mousedown', mouseDownHandler);
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
 });
