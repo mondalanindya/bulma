@@ -6,7 +6,6 @@ body, html {
     align-items: center;
     background-color: #f0f2f5;
 }
-
 .image-compare-container {
     position: relative;
     width: 500px; /* Match your images' size */
@@ -14,21 +13,18 @@ body, html {
     overflow: hidden;
 }
 
-.image-compare-container img, .slider {
+.image-compare-container img {
     position: absolute;
     width: 100%;
     height: 100%;
-}
-
-.slider {
-    width: 50%; /* Initial clip */
-    overflow: hidden;
+    transition: width 0.5s ease;
 }
 
 .slider img {
     position: absolute;
     width: 100%;
     height: 100%;
+    left: 50%; /* Initial position to the right, showing the left image fully */
 }
 
 .handle {
@@ -38,5 +34,6 @@ body, html {
     width: 2px;
     background: #ffffff; /* Line color */
     cursor: ew-resize;
-    left: 50%; /* Initial position */
+    left: 50%; /* Initial position in the middle */
+    z-index: 10;
 }
