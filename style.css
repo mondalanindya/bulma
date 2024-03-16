@@ -9,12 +9,12 @@ body, html {
 
 .image-compare-container {
     position: relative;
-    width: 500px; /* Set to match image width */
-    height: 333px; /* Set to match image height */
+    width: 500px; /* Adjust to match your images' width */
+    height: 333px; /* Adjust to match your images' height */
     overflow: hidden;
 }
 
-.image-compare-container img.full-width {
+.image-compare-container img {
     position: absolute;
     top: 0;
     left: 0;
@@ -26,28 +26,21 @@ body, html {
 .slider {
     position: absolute;
     top: 0;
-    left: 50%;
-    width: 50%;
+    left: 0;
+    width: 100%; /* Initially show the second image fully */
     height: 100%;
     overflow: hidden;
-}
-
-.slider img {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 200%; /* Double the container width to fit when slid */
-    height: 100%;
-    object-fit: cover;
+    transition: width 0.5s ease; /* Optional: adds transition for smoother sliding */
 }
 
 .handle {
     position: absolute;
-    left: 50%;
+    left: 100%; /* Initially position handle at the right edge */
     top: 0;
     bottom: 0;
     width: 3px;
     background: #ffffff;
     cursor: ew-resize;
     z-index: 2;
+    transform: translateX(-100%); /* Offset by its own width to align properly */
 }
