@@ -1,27 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     const handle = document.querySelector('.handle');
-    const slider = document.querySelector('.slider');
+    const img2 = document.getElementById('img2');
     let isDragging = false;
 
     handle.addEventListener('mousedown', (e) => {
         isDragging = true;
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.removeEventListener('mousemove', mouseMoveHandler);
+        });
     });
 
-    document.addEventListener('mousemove', (e) => {
+    const mouseMoveHandler = (e) => {
         if (!isDragging) return;
-        // Calculate slider position relative to the image container
-        const rect = slider.getBoundingClientRect();
-        let newLeft = e.clientX - rect.left;
-
-        // Clamp the new position to the container bounds
-        newLeft = Math.max(0, Math.min(newLeft, slider.parentElement.offsetWidth));
-
-        // Set new positions
-        slider.style.width = `${newLeft}px`;
-        handle.style.left = `${newLeft}px`;
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
+        const rect = handle.parentElement.getBoundingClientRect();
+        const offset = Math.min(Math.max(0, e.clientX - rect.left), rect.width);
+        const percentage = (offset / rect.width) * 100;
+        handle.style.left = percentage + '%';
+        img2.style.width = percentage + '%';
+        img2.style.left = percentage + '%';
+    };
 });
