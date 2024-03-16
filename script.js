@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const mouseMoveHandler = function(e) {
         if (!isPressedDown) return;
         const dx = e.clientX - startX;
-        let newWidth = Math.max(0, Math.min(slider.offsetWidth + dx, slider.parentElement.offsetWidth));
-        slider.style.width = `${newWidth}px`;
-        handle.style.left = `${newWidth}px`;
+        const newLeft = Math.min(Math.max(0, handle.offsetLeft + dx), slider.parentElement.offsetWidth);
+
+        slider.style.width = `${newLeft}px`;
+        handle.style.left = `${newLeft}px`;
         startX = e.clientX;
     };
 
