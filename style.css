@@ -1,0 +1,34 @@
+.comparison-blocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px; /* Adjust based on layout needs */
+}
+
+.image-compare-container {
+    position: relative;
+    width: 500px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.image-compare-container img, .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    clip-path: inset(0 50% 0 0); /* Initially show the right half */
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #fff;
+    cursor: ew-resize;
+    left: 50%;
+}
